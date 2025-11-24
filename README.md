@@ -3,7 +3,7 @@ A comprehensive Python-based console application designed to help users track th
 Health Manager - Console-Based Health Tracking Application
  # Overview
 Health Manager is a comprehensive Python-based console application designed to help users track their health and fitness journey. This application provides a simple yet powerful solution for monitoring daily meals, exercise routines, and overall health progress through an intuitive text-based interface. With secure local data storage and no external dependencies, it's perfect for individuals who want to maintain their health records privately and efficiently.
- Features
+# Features
  # User Management
 •	Secure Registration & Login - Multi-user system with individual data isolation
 •	Persistent Sessions - Maintain user data across application restarts
