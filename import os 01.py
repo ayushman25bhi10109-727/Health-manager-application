@@ -65,7 +65,6 @@ class HealthManager:
             self.register()
             return
         
-        # Create user data structure
         user_data = {
             "username": username,
             "created_at": datetime.datetime.now().isoformat(),
@@ -73,7 +72,6 @@ class HealthManager:
             "exercises": []
         }
         
-        # Save user data
         with open(user_file, 'w') as f:
             json.dump(user_data, f, indent=2)
         
@@ -134,13 +132,10 @@ class HealthManager:
         except ValueError:
             input("Invalid calories! Please enter a number. Press Enter to continue...")
             return
-        
-        # Get current date and time
         now = datetime.datetime.now()
         date_str = now.strftime("%Y-%m-%d")
         time_str = now.strftime("%H:%M")
         
-        # Ask if user wants to use custom date/time
         use_custom = input("Use custom date/time? (y/n): ").strip().lower()
         if use_custom == 'y':
             date_str = input("Enter date (YYYY-MM-DD): ").strip()
@@ -153,8 +148,6 @@ class HealthManager:
             "time": time_str,
             "logged_at": now.isoformat()
         }
-        
-        # Save to user data
         user_data = self.get_user_data()
         user_data["meals"].append(meal_entry)
         self.save_user_data(user_data)
@@ -179,12 +172,10 @@ class HealthManager:
             input("Invalid input! Please enter numbers for duration and calories. Press Enter to continue...")
             return
         
-        # Get current date and time
         now = datetime.datetime.now()
         date_str = now.strftime("%Y-%m-%d")
         time_str = now.strftime("%H:%M")
-        
-        # Ask if user wants to use custom date/time
+
         use_custom = input("Use custom date/time? (y/n): ").strip().lower()
         if use_custom == 'y':
             date_str = input("Enter date (YYYY-MM-DD): ").strip()
@@ -199,7 +190,6 @@ class HealthManager:
             "logged_at": now.isoformat()
         }
         
-        # Save to user data
         user_data = self.get_user_data()
         user_data["exercises"].append(exercise_entry)
         self.save_user_data(user_data)
@@ -245,7 +235,6 @@ class HealthManager:
             input("\nPress Enter to continue...")
             return
         
-        # Sort meals by date and time (newest first)
         sorted_meals = sorted(meals, key=lambda x: x.get('logged_at', ''), reverse=True)
         
         total_calories = 0
@@ -269,7 +258,6 @@ class HealthManager:
             input("\nPress Enter to continue...")
             return
         
-        # Sort exercises by date and time (newest first)
         sorted_exercises = sorted(exercises, key=lambda x: x.get('logged_at', ''), reverse=True)
         
         total_calories_burned = 0
@@ -293,7 +281,6 @@ class HealthManager:
         self.display_header()
         print("=== ALL RECORDS SUMMARY ===\n")
         
-        # Calculate totals
         total_calories_consumed = sum(meal['calories'] for meal in meals)
         total_calories_burned = sum(exercise['calories_burned'] for exercise in exercises)
         net_calories = total_calories_consumed - total_calories_burned
@@ -348,7 +335,7 @@ class HealthManager:
         """Start the application"""
         self.user_login()
 
-# Run the application
 if __name__ == "__main__":
     app = HealthManager()
+
     app.run()
